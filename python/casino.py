@@ -19,9 +19,6 @@ def rollDices():
     dice2 = randint(1, 6)
     return dice1, dice2
 
-
-
-
 #main
 print(":::::welcome to the casino:::::")
 press_key = input("\npress any key to strart the game :::")
