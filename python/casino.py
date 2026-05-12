@@ -12,7 +12,6 @@ acum_dices = 0
 status = True
 player_lives = 3
 
-
 #functions
 def rollDices():
     dice1 = randint(1, 6)
