@@ -13,227 +13,220 @@ product_name = []
 product_quantity = []
 product_unit_val = []
 
-def mainmenu():
-    os.system("clear")
-    print("::: market main menu :::")
-    print(
-          "[1]. register client\n"
-          "[2]. register product\n"
-          "[3]. list clients\n"
-          "[4]. list products\n"
-          "[5]. search client by ident\n"
-          "[6]. search product by code\n"
-          "[7]. update client\n"
-          "[8]. update product\n"
-          "[9]. delete client\n"
-          "[10]. delete product\n"
-          "[11]. exit\n"
-          "::: press any option :::")
+def mainMenu():
+    os.system('clear')
+    print("=== MARKET MAIN MENU ===")
+    print("[1] Registrar cliente")
+    print("[2] Registrar producto")
+    print("[3] Listar clientes")
+    print("[4] Listar productos")
+    print("[5] Buscar cliente")
+    print("[6] Buscar producto")
+    print("[7] Actualizar cliente")
+    print("[8] Actualizar producto")
+    print("[9] Eliminar cliente")
+    print("[10] Eliminar producto")
+    print("[11] Salir")
 
+def registrarCliente():
+    os.system('clear')
+    print("=== REGISTRAR CLIENTE ===")
+    ident = input("Identificacion: ")
+    if ident in client_ident:
+        print("Esa identificacion ya existe.")
+        input("Enter para continuar.")
+        return
+    client_ident.append(ident)
+    client_fullname.append(input("Nombre completo: "))
+    client_address.append(input("Direccion: "))
+    client_mobile.append(input("Telefono: "))
+    client_email.append(input("Email: "))
+    client_gender.append(input("Genero (M/F): "))
+    client_age.append(input("Edad: "))
+    print("Cliente registrado!")
+    input("Enter para continuar.")
 
-# main
-menu_status = True
+def registrarProducto():
+    os.system('clear')
+    print("=== REGISTRAR PRODUCTO ===")
+    code = input("Codigo del producto: ")
+    if code in product_code:
+        print("Ese codigo ya existe.")
+        input("Enter para continuar.")
+        return
+    product_code.append(code)
+    product_name.append(input("Nombre del producto: "))
+    product_quantity.append(input("Cantidad en stock: "))
+    product_unit_val.append(input("Valor unitario: "))
+    print("Producto registrado!")
+    input("Enter para continuar.")
 
-while menu_status:
+def listarClientes():
+    os.system('clear')
+    print("=== LISTA DE CLIENTES ===")
+    if len(client_ident) == 0:
+        print("No hay clientes registrados.")
+    else:
+        i = 0
+        while i < len(client_ident):
+            print(f"ID: {client_ident[i]} | Nombre: {client_fullname[i]} | Dir: {client_address[i]} | Tel: {client_mobile[i]} | Email: {client_email[i]} | Genero: {client_gender[i]} | Edad: {client_age[i]}")
+            i += 1
+    input("Enter para continuar.")
 
-    mainmenu()
-    opt = int(input())
+def listarProductos():
+    os.system('clear')
+    print("=== LISTA DE PRODUCTOS ===")
+    if len(product_code) == 0:
+        print("No hay productos registrados.")
+    else:
+        i = 0
+        while i < len(product_code):
+            print(f"Codigo: {product_code[i]} | Nombre: {product_name[i]} | Cantidad: {product_quantity[i]} | Valor: {product_unit_val[i]}")
+            i += 1
+    input("Enter para continuar.")
+
+def buscarCliente():
+    os.system('clear')
+    print("=== BUSCAR CLIENTE ===")
+    ident = input("Ingrese la identificacion: ")
+    i = 0
+    encontrado = False
+    while i < len(client_ident):
+        if client_ident[i] == ident:
+            print(f"Nombre: {client_fullname[i]}")
+            print(f"Direccion: {client_address[i]}")
+            print(f"Telefono: {client_mobile[i]}")
+            print(f"Email: {client_email[i]}")
+            print(f"Genero: {client_gender[i]}")
+            print(f"Edad: {client_age[i]}")
+            encontrado = True
+            break
+        i += 1
+    if not encontrado:
+        print("Cliente no encontrado.")
+    input("Enter para continuar.")
+
+def buscarProducto():
+    os.system('clear')
+    print("=== BUSCAR PRODUCTO ===")
+    code = input("Ingrese el codigo: ")
+    i = 0
+    encontrado = False
+    while i < len(product_code):
+        if product_code[i] == code:
+            print(f"Nombre: {product_name[i]}")
+            print(f"Cantidad: {product_quantity[i]}")
+            print(f"Valor: {product_unit_val[i]}")
+            encontrado = True
+            break
+        i += 1
+    if not encontrado:
+        print("Producto no encontrado.")
+    input("Enter para continuar.")
+
+def actualizarCliente():
+    os.system('clear')
+    print("=== ACTUALIZAR CLIENTE ===")
+    ident = input("Ingrese la identificacion: ")
+    i = 0
+    while i < len(client_ident):
+        if client_ident[i] == ident:
+            client_fullname[i] = input(f"Nuevo nombre ({client_fullname[i]}): ")
+            client_address[i] = input(f"Nueva direccion ({client_address[i]}): ")
+            client_mobile[i] = input(f"Nuevo telefono ({client_mobile[i]}): ")
+            client_email[i] = input(f"Nuevo email ({client_email[i]}): ")
+            client_gender[i] = input(f"Nuevo genero ({client_gender[i]}): ")
+            client_age[i] = input(f"Nueva edad ({client_age[i]}): ")
+            print("Cliente actualizado!")
+            input("Enter para continuar.")
+            return
+        i += 1
+    print("Cliente no encontrado.")
+    input("Enter para continuar.")
+
+def actualizarProducto():
+    os.system('clear')
+    print("=== ACTUALIZAR PRODUCTO ===")
+    code = input("Ingrese el codigo: ")
+    i = 0
+    while i < len(product_code):
+        if product_code[i] == code:
+            product_name[i] = input(f"Nuevo nombre ({product_name[i]}): ")
+            product_quantity[i] = input(f"Nueva cantidad ({product_quantity[i]}): ")
+            product_unit_val[i] = input(f"Nuevo valor ({product_unit_val[i]}): ")
+            print("Producto actualizado!")
+            input("Enter para continuar.")
+            return
+        i += 1
+    print("Producto no encontrado.")
+    input("Enter para continuar.")
+
+def eliminarCliente():
+    os.system('clear')
+    print("=== ELIMINAR CLIENTE ===")
+    ident = input("Ingrese la identificacion: ")
+    i = 0
+    while i < len(client_ident):
+        if client_ident[i] == ident:
+            client_ident.pop(i)
+            client_fullname.pop(i)
+            client_address.pop(i)
+            client_mobile.pop(i)
+            client_email.pop(i)
+            client_gender.pop(i)
+            client_age.pop(i)
+            print("Cliente eliminado!")
+            input("Enter para continuar.")
+            return
+        i += 1
+    print("Cliente no encontrado.")
+    input("Enter para continuar.")
+
+def eliminarProducto():
+    os.system('clear')
+    print("=== ELIMINAR PRODUCTO ===")
+    code = input("Ingrese el codigo: ")
+    i = 0
+    while i < len(product_code):
+        if product_code[i] == code:
+            product_code.pop(i)
+            product_name.pop(i)
+            product_quantity.pop(i)
+            product_unit_val.pop(i)
+            print("Producto eliminado!")
+            input("Enter para continuar.")
+            return
+        i += 1
+    print("Producto no encontrado.")
+    input("Enter para continuar.")
+
+# Main
+while True:
+    mainMenu()
+    opt = int(input("Opcion: "))
 
     if opt == 1:
-        os.system('clear')
-        print('..............................')
-        print('........new clients..........')
-        print('..............................')
-
-        ident = input('client identification: ')
-        client_ident.append(ident)
-
-        fullname = input('client fullname: ')
-        client_fullname.append(fullname)
-
-        address = input('client address: ')
-        client_address.append(address)
-
-        mobile = input('client mobile: ')
-        client_mobile.append(mobile)
-
-        email = input('client email: ')
-        client_email.append(email)
-
-        gender = input('client gender: ')
-        client_gender.append(gender)
-
-        age = input('client age: ')
-        client_age.append(age)
-
-        print('client has been registered successfully !!!')
-        key = input('press any option to back to main menu: ')
-
+        registrarCliente()
     elif opt == 2:
-        os.system('clear')
-        print('..............................')
-        print('........new product..........')
-        print('..............................')
-
-        code = input('product code: ')
-        product_code.append(code)
-
-        name = input('product name: ')
-        product_name.append(name)
-
-        quantity = input('product quantity: ')
-        product_quantity.append(quantity)
-
-        value = input('product unit value: ')
-        product_unit_val.append(value)
-
-        print('product has been registered successfully !!!')
-        key = input('press any option to back to main menu: ')
-
+        registrarProducto()
     elif opt == 3:
-        os.system('clear')
-        print('..............................')
-        print('........list of clients......')
-        print('..............................')
-
-        print('\n')
-        print('-'*50)
-        print(f'{"identification":<20} {"fullname":<20}')
-        print('-'*50)
-
-        i = 0
-        while i < len(client_fullname):
-            print(f'{client_ident[i]:<20} {client_fullname[i]:<20}')
-            i += 1
-
-        key = input('press any option to back to main menu: ')
-
+        listarClientes()
     elif opt == 4:
-        os.system('clear')
-        print('..............................')
-        print('........list products........')
-        print('..............................')
-
-        print('-'*60)
-        print(f'{"code":<15} {"name":<20} {"quantity":<10} {"value":<10}')
-        print('-'*60)
-
-        i = 0
-        while i < len(product_name):
-            print(f'{product_code[i]:<15} {product_name[i]:<20} {product_quantity[i]:<10} {product_unit_val[i]:<10}')
-            i += 1
-
-        key = input('press any option to back to main menu: ')
-
+        listarProductos()
     elif opt == 5:
-        ident = input('client identification: ')
-
-        if ident in client_ident:
-            pos = client_ident.index(ident)
-
-            print('identification:', client_ident[pos])
-            print('fullname:', client_fullname[pos])
-            print('address:', client_address[pos])
-            print('mobile:', client_mobile[pos])
-            print('email:', client_email[pos])
-            print('gender:', client_gender[pos])
-            print('age:', client_age[pos])
-        else:
-            print('client not found')
-
-        input('press any option to continue: ')
-
+        buscarCliente()
     elif opt == 6:
-        code = input('product code: ')
-
-        if code in product_code:
-            pos = product_code.index(code)
-
-            print('code:', product_code[pos])
-            print('name:', product_name[pos])
-            print('quantity:', product_quantity[pos])
-            print('value:', product_unit_val[pos])
-        else:
-            print('product not found')
-
-        input('press any option to continue: ')
-
+        buscarProducto()
     elif opt == 7:
-        ident = input('client identification: ')
-
-        if ident in client_ident:
-            pos = client_ident.index(ident)
-
-            client_fullname[pos] = input('new fullname: ')
-            client_address[pos] = input('new address: ')
-            client_mobile[pos] = input('new mobile: ')
-            client_email[pos] = input('new email: ')
-            client_gender[pos] = input('new gender: ')
-            client_age[pos] = input('new age: ')
-
-            print('client updated successfully')
-        else:
-            print('client not found')
-
-        input('press any option to continue: ')
-
+        actualizarCliente()
     elif opt == 8:
-        code = input('product code: ')
-
-        if code in product_code:
-            pos = product_code.index(code)
-
-            product_name[pos] = input('new name: ')
-            product_quantity[pos] = input('new quantity: ')
-            product_unit_val[pos] = input('new value: ')
-
-            print('product updated successfully')
-        else:
-            print('product not found')
-
-        input('press any option to continue: ')
-
+        actualizarProducto()
     elif opt == 9:
-        ident = input('client identification: ')
-
-        if ident in client_ident:
-            pos = client_ident.index(ident)
-
-            del client_ident[pos]
-            del client_fullname[pos]
-            del client_address[pos]
-            del client_mobile[pos]
-            del client_email[pos]
-            del client_gender[pos]
-            del client_age[pos]
-
-            print('client deleted successfully')
-        else:
-            print('client not found')
-
-        input('press any option to continue: ')
-
+        eliminarCliente()
     elif opt == 10:
-        code = input('product code: ')
-
-        if code in product_code:
-            pos = product_code.index(code)
-
-            del product_code[pos]
-            del product_name[pos]
-            del product_quantity[pos]
-            del product_unit_val[pos]
-
-            print('product deleted successfully')
-        else:
-            print('product not found')
-
-        input('press any option to continue: ')
-
+        eliminarProducto()
     elif opt == 11:
-        print('bye bye')
+        print("Hasta luego!")
         break
-
     else:
-        print('invalid option, try again')
-        input('press any key to continue')
+        input("Opcion invalida. Enter para continuar.")
