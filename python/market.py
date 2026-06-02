@@ -1,4 +1,5 @@
 import os
+
 client_ident = []
 client_fullname = []
 client_address = []
@@ -16,225 +17,184 @@ def mainmenu():
     os.system("clear")
     print("::: market main menu :::")
     print(
-          "[1]. register client\n" \
-          "[2]. register product\n" \
-          "[3]. list clients\n" \
-          "[4]. list products\n" \
-          "[5]. search client by ident\n" \
-          "[6]. search product by code\n" \
-          "[7]. update client\n" \
-          "[8]. update product\n" \
-          "[9]. delete client\n" \
-          "[10]. delete product\n" \
-          "[11]. exit\n" \
+          "[1]. register client\n"
+          "[2]. register product\n"
+          "[3]. list clients\n"
+          "[4]. list products\n"
+          "[5]. search client by ident\n"
+          "[6]. search product by code\n"
+          "[7]. update client\n"
+          "[8]. update product\n"
+          "[9]. delete client\n"
+          "[10]. delete product\n"
+          "[11]. exit\n"
           "::: press any option :::")
-    
 
-    # MAIN
-    menu_status = True
+
+# main
+menu_status = True
+
 while menu_status:
+
     mainmenu()
     opt = int(input())
 
-    
- # REGISTER CLIENT
-    # =====================
     if opt == 1:
+        os.system('clear')
+        print('..............................')
+        print('........new clients..........')
+        print('..............................')
 
-        os.system("cls" if os.name == "nt" else "clear")
+        ident = input('client identification: ')
+        client_ident.append(ident)
 
-        ident = input("Client identification: ")
+        fullname = input('client fullname: ')
+        client_fullname.append(fullname)
 
-        if ident in client_ident:
-            print("Client already exists.")
-        else:
-            fullname = input("Full name: ")
-            address = input("Address: ")
-            mobile = input("Mobile: ")
-            email = input("Email: ")
-            gender = input("Gender: ")
-            age = int(input("Age: "))
+        address = input('client address: ')
+        client_address.append(address)
 
-            client_ident.append(ident)
-            client_fullname.append(fullname)
-            client_address.append(address)
-            client_mobile.append(mobile)
-            client_email.append(email)
-            client_gender.append(gender)
-            client_age.append(age)
+        mobile = input('client mobile: ')
+        client_mobile.append(mobile)
 
-            print("Client registered successfully!")
+        email = input('client email: ')
+        client_email.append(email)
 
-        input("Press ENTER to continue...")
+        gender = input('client gender: ')
+        client_gender.append(gender)
 
-    # =====================
-    # REGISTER PRODUCT
-    # =====================
+        age = input('client age: ')
+        client_age.append(age)
+
+        print('client has been registered successfully !!!')
+        key = input('press any option to back to main menu: ')
+
     elif opt == 2:
+        os.system('clear')
+        print('..............................')
+        print('........new product..........')
+        print('..............................')
 
-        os.system("cls" if os.name == "nt" else "clear")
+        code = input('product code: ')
+        product_code.append(code)
 
-        code = input("Product code: ")
+        name = input('product name: ')
+        product_name.append(name)
 
-        if code in product_code:
-            print("Product code already exists.")
-        else:
-            name = input("Product name: ")
-            quantity = int(input("Quantity: "))
-            value = float(input("Unit value: "))
+        quantity = input('product quantity: ')
+        product_quantity.append(quantity)
 
-            product_code.append(code)
-            product_name.append(name)
-            product_quantity.append(quantity)
-            product_unit_val.append(value)
+        value = input('product unit value: ')
+        product_unit_val.append(value)
 
-            print("Product registered successfully!")
+        print('product has been registered successfully !!!')
+        key = input('press any option to back to main menu: ')
 
-        input("Press ENTER to continue...")
-
-    # =====================
-    # LIST CLIENTS
-    # =====================
     elif opt == 3:
+        os.system('clear')
+        print('..............................')
+        print('........list of clients......')
+        print('..............................')
 
-        os.system("cls" if os.name == "nt" else "clear")
+        print('\n')
+        print('-'*50)
+        print(f'{"identification":<20} {"fullname":<20}')
+        print('-'*50)
 
-        print("-" * 120)
-        print(
-            f'{"ID":<15} {"FULL NAME":<20} {"ADDRESS":<20} {"MOBILE":<15} {"EMAIL":<25} {"GENDER":<10} {"AGE":<5}'
-        )
-        print("-" * 120)
+        i = 0
+        while i < len(client_fullname):
+            print(f'{client_ident[i]:<20} {client_fullname[i]:<20}')
+            i += 1
 
-        for i in range(len(client_ident)):
-            print(
-                f'{client_ident[i]:<15} '
-                f'{client_fullname[i]:<20} '
-                f'{client_address[i]:<20} '
-                f'{client_mobile[i]:<15} '
-                f'{client_email[i]:<25} '
-                f'{client_gender[i]:<10} '
-                f'{client_age[i]:<5}'
-            )
+        key = input('press any option to back to main menu: ')
 
-        input("\nPress ENTER to continue...")
-
-    # =====================
-    # LIST PRODUCTS
-    # =====================
     elif opt == 4:
+        os.system('clear')
+        print('..............................')
+        print('........list products........')
+        print('..............................')
 
-        os.system("cls" if os.name == "nt" else "clear")
+        print('-'*60)
+        print(f'{"code":<15} {"name":<20} {"quantity":<10} {"value":<10}')
+        print('-'*60)
 
-        print("-" * 70)
-        print(f'{"CODE":<15} {"NAME":<25} {"QTY":<10} {"VALUE":<10}')
-        print("-" * 70)
+        i = 0
+        while i < len(product_name):
+            print(f'{product_code[i]:<15} {product_name[i]:<20} {product_quantity[i]:<10} {product_unit_val[i]:<10}')
+            i += 1
 
-        for i in range(len(product_code)):
-            print(
-                f'{product_code[i]:<15} '
-                f'{product_name[i]:<25} '
-                f'{product_quantity[i]:<10} '
-                f'{product_unit_val[i]:<10.2f}'
-            )
+        key = input('press any option to back to main menu: ')
 
-        input("\nPress ENTER to continue...")
-
-    # =====================
-    # SEARCH CLIENT
-    # =====================
     elif opt == 5:
-
-        ident = input("Identification: ")
+        ident = input('client identification: ')
 
         if ident in client_ident:
             pos = client_ident.index(ident)
 
-            print("\nClient found")
-            print("ID:", client_ident[pos])
-            print("Name:", client_fullname[pos])
-            print("Address:", client_address[pos])
-            print("Mobile:", client_mobile[pos])
-            print("Email:", client_email[pos])
-            print("Gender:", client_gender[pos])
-            print("Age:", client_age[pos])
-
+            print('identification:', client_ident[pos])
+            print('fullname:', client_fullname[pos])
+            print('address:', client_address[pos])
+            print('mobile:', client_mobile[pos])
+            print('email:', client_email[pos])
+            print('gender:', client_gender[pos])
+            print('age:', client_age[pos])
         else:
-            print("Client not found.")
+            print('client not found')
 
-        input("Press ENTER to continue...")
+        input('press any option to continue: ')
 
-    # =====================
-    # SEARCH PRODUCT
-    # =====================
     elif opt == 6:
-
-        code = input("Product code: ")
+        code = input('product code: ')
 
         if code in product_code:
             pos = product_code.index(code)
 
-            print("\nProduct found")
-            print("Code:", product_code[pos])
-            print("Name:", product_name[pos])
-            print("Quantity:", product_quantity[pos])
-            print("Value:", product_unit_val[pos])
-
+            print('code:', product_code[pos])
+            print('name:', product_name[pos])
+            print('quantity:', product_quantity[pos])
+            print('value:', product_unit_val[pos])
         else:
-            print("Product not found.")
+            print('product not found')
 
-        input("Press ENTER to continue...")
+        input('press any option to continue: ')
 
-    # =====================
-    # UPDATE CLIENT
-    # =====================
     elif opt == 7:
-
-        ident = input("Identification: ")
+        ident = input('client identification: ')
 
         if ident in client_ident:
             pos = client_ident.index(ident)
 
-            client_fullname[pos] = input("New full name: ")
-            client_address[pos] = input("New address: ")
-            client_mobile[pos] = input("New mobile: ")
-            client_email[pos] = input("New email: ")
-            client_gender[pos] = input("New gender: ")
-            client_age[pos] = int(input("New age: "))
+            client_fullname[pos] = input('new fullname: ')
+            client_address[pos] = input('new address: ')
+            client_mobile[pos] = input('new mobile: ')
+            client_email[pos] = input('new email: ')
+            client_gender[pos] = input('new gender: ')
+            client_age[pos] = input('new age: ')
 
-            print("Client updated successfully!")
-
+            print('client updated successfully')
         else:
-            print("Client not found.")
+            print('client not found')
 
-        input("Press ENTER to continue...")
+        input('press any option to continue: ')
 
-    # =====================
-    # UPDATE PRODUCT
-    # =====================
     elif opt == 8:
-
-        code = input("Product code: ")
+        code = input('product code: ')
 
         if code in product_code:
             pos = product_code.index(code)
 
-            product_name[pos] = input("New name: ")
-            product_quantity[pos] = int(input("New quantity: "))
-            product_unit_val[pos] = float(input("New value: "))
+            product_name[pos] = input('new name: ')
+            product_quantity[pos] = input('new quantity: ')
+            product_unit_val[pos] = input('new value: ')
 
-            print("Product updated successfully!")
-
+            print('product updated successfully')
         else:
-            print("Product not found.")
+            print('product not found')
 
-        input("Press ENTER to continue...")
+        input('press any option to continue: ')
 
-    # =====================
-    # DELETE CLIENT
-    # =====================
     elif opt == 9:
-
-        ident = input("Identification: ")
+        ident = input('client identification: ')
 
         if ident in client_ident:
             pos = client_ident.index(ident)
@@ -247,19 +207,14 @@ while menu_status:
             del client_gender[pos]
             del client_age[pos]
 
-            print("Client deleted successfully!")
-
+            print('client deleted successfully')
         else:
-            print("Client not found.")
+            print('client not found')
 
-        input("Press ENTER to continue...")
+        input('press any option to continue: ')
 
-    # =====================
-    # DELETE PRODUCT
-    # =====================
     elif opt == 10:
-
-        code = input("Product code: ")
+        code = input('product code: ')
 
         if code in product_code:
             pos = product_code.index(code)
@@ -269,22 +224,16 @@ while menu_status:
             del product_quantity[pos]
             del product_unit_val[pos]
 
-            print("Product deleted successfully!")
-
+            print('product deleted successfully')
         else:
-            print("Product not found.")
+            print('product not found')
 
-        input("Press ENTER to continue...")
+        input('press any option to continue: ')
 
-    # =====================
-    # EXIT
-    # =====================
     elif opt == 11:
-
-        print("Bye Bye...")
+        print('bye bye')
         break
 
-    # =====================
-    # INVALID OPTION
-    # =====================
     else:
+        print('invalid option, try again')
+        input('press any key to continue')
